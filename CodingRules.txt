@@ -1,0 +1,23 @@
+CODING RULES:
+
+1) When starting a new curly brace, start on same line, and end curly should be at same level as the line which started it. EG:
+	if(some_statement){
+		code_goes_here();
+	}
+2) When using if-statements, even for single statements, always use curly braces. No letting any confusing sameline ifs.
+	DO THIS:
+		if(some_statement){
+			single_line();
+		}
+	NOT THIS:
+		if(some_statement) do_this();
+	NOR THIS:
+		if(some_statement)
+			do_this();
+3) camelCase or under_score is acceptable, but be consistent in a sourcefile.
+
+REGARDING GenericList.h
+
+When defining a list, use define_list(item), but only use it where the list you are defining the item to have a list made out of it. Thatway, to use a list of that type, you only have to import the item.h file.
+
+When defining a type, it has to be one word. So if the type is a struct, enum, or other sort of multi-word types, you need to typedef them.

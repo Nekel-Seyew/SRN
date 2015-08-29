@@ -20,7 +20,7 @@ struct Player{
 	//attack
 	long attack;
 	//inventory
-	struct item_array* inventory;
+	List(item_t)* inventory;
 };
 
 
