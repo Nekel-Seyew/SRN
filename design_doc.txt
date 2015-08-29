@@ -1,0 +1,42 @@
+Design Document:
+
+Players:
+	Stats:
+		Constitution
+		Strength
+		Dexterity
+		Intelligence 
+		Wisdom
+		Charisma
+	Defenses:
+		Armor : Armor_Num + Skill_Mod + Class_Bonus
+		Footing: MAX(Constitution + Con_Bonuses, Dexterity + Dex_Bonuses) + Bonuses
+		Dodge: (Dexterity + Dex_Bonuses)*0.01 + Bonuses
+	Attack:
+		IF(Enemy.Dodge_Success): 0
+		DMG = MAX(((Weapon_str + weapon_stat_type + bonuses + attack) - Enemy.armor),0)
+	Max Weight:
+		normal = Strength * 10
+		half = Strength * 15
+		Overburdend = Strength * 20
+Classes:
+	ROLES:
+		Tank           (High Health, High Agro)
+		De-Buff        (Lower stats of enemy)
+		Crowd Control  (target many people, not that strong attacks)
+		Buff           (Raise Stats of Allies)
+		DPS            (Deal High Damage to Single target)
+	
+	Wizard range/cc/buff/debuff
+	Fighter tank/dps
+	Rogue dps/debuff
+	
+	Monk - dps
+	Cleric - anti-deBuff
+	Warlock - cc
+	Paladin - buff-tank
+	Druid - CC/debuff
+	BattleMage - tank/debuff
+	Bard - Buff/debuff
+	ranger - dps/cc
+	wanderer - mimic
