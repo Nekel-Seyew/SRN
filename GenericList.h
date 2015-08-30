@@ -16,14 +16,15 @@ the int (*cmp)(const void*,const void*) will be passed type* items.
     { \
         int (*is_empty)(const struct _list_##type*); \
         size_t (*size)(const struct _list_##type*); \
-		void (*add)(struct _list_##type*, type);\
-		void (*remove)(struct _list_##type*,type,int (*cmp)(const void*,const void*));\
+	void (*add)(struct _list_##type*, type);\
+	void (*remove)(struct _list_##type*,type,int (*cmp)(const void*,const void*));\
+	int (*set)(struct _list_##type*,const type,const int);\
     } _list_functions_##type; \
     \
     typedef struct _list_##type \
     { \
         size_t _size; \
-		size_t _length;\
+	size_t _length;\
         type* _data; \
         _list_functions_##type* _functions; \
     } List_##type; \
@@ -31,8 +32,9 @@ the int (*cmp)(const void*,const void*) will be passed type* items.
     List_##type* new_list_##type(); \
     int list_is_empty_##type(const List_##type* list); \
     size_t list_size_##type(const List_##type* list); \
-	void list_add_##type(List_##type* list, type elem);\
-	void list_remove_##type(List_##type* list, type elem,int (*cmp)(const void*,const void*));\
+    void list_add_##type(List_##type* list, type elem);\
+    void list_remove_##type(List_##type* list, type elem,int (*cmp)(const void*,const void*));\
+    int list_set_##type(List_##type* list,const type elem, const int place);\
     \
     int list_is_empty_##type(const List_##type* list) \
     { \
@@ -61,25 +63,27 @@ the int (*cmp)(const void*,const void*) will be passed type* items.
 		for(i=0; i<list->_size; ++i){ \
 			if(cmp(&elem,&(list->_data[i])) == 0){ \
 				size_t j; \
-				for(j=i; j<list->_size; ++j){ \
-					if(j+1 >= list->_size){ \
-						list->_data[j] = (type)NULL; \
-						list->_size -= 1; \
-						return; \
-					} \
-					list->_data[j] = list->_data[j+1]; \
-					list->_size -= 1; \
-					return; \
-				} \
-			}\
-		}\
+				memcpy(&(list->_data[i]),&(list->_data[i+1]),sizeof(type)*(list->_size - i -1)); \
+				memset(&(list->_data[list->_size -1 ]),0,sizeof(type)); \
+				list->_size -= 1; \
+				return; \
+			} \
+		} \
 	} \
+	int list_set_##type(List_##type* list, const type elem, const int place){\
+		if(place > list->_size){\
+			return 0; \
+		}\
+		list->_data[place]=elem;\
+		return 1;\
+	}\
     \
     _list_functions_##type _list_funcs_##type = { \
         &list_is_empty_##type, \
         &list_size_##type, \
-		&list_add_##type, \
-		&list_remove_##type \
+	&list_add_##type, \
+	&list_remove_##type, \
+	&list_set_##type\
     }; \
     \
     List_##type* new_list_##type() \
@@ -98,9 +102,13 @@ the int (*cmp)(const void*,const void*) will be passed type* items.
 	list->_functions->size(list)
 #define list_add(list, item) \
 	list->_functions->add(list,item)
-#define list_remove(list,item) \
-	list->_functions->remove(list,item)
-	
+#define list_remove(list,item,cmp) \
+	list->_functions->remove(list,item,cmp)
+#define list_at(list,i) \
+	list->_data[i]
+#define list_set(list,elem,i)\
+	list->_functions_set(list,elem,i)
+
 #define List(type) \
     List_##type
 

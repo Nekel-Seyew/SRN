@@ -1,9 +1,13 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h> /* for getopt */
+#include <ncurses.h> /*for all the ncurses stuff */
 #include "GenericList.h"
 
+typedef char* string;
+
 define_list(int)
+define_list(string);
 
 void print_startup_options_help(){
 	printf(" SRN is a terminal based RPG-MUD\n");
@@ -16,7 +20,21 @@ void print_startup_options_help(){
 	printf("	-v		be verbose in loging.\n");
 }
 
-int main(int argc, char** argv){
+void init_ncurses(){
+	initscr();
+	keypad(stdscr, 1);
+	if(has_colors()){
+		start_color();
+		int i=1,j=1;
+		for(i=1; (i-1)<8; ++i){
+			for(j=1; (j-1)<8; ++j){
+				init_pair(10*i + j, (j-1), (i-1));
+			}
+		}
+	}
+}
+
+int main(int argc, string argv[]){
 	int c;
 	int portnum;
 	char* game_address;
@@ -39,6 +57,15 @@ int main(int argc, char** argv){
 				verbose = 1;
 				break;
 		}
+	}
+	if(server){
+		//launch server code
+	}
+	else{
+		init_ncurses();
+		//add timing code while loop
+		//add updating and drawing code
+		endwin();
 	}
 	return 0;
 }

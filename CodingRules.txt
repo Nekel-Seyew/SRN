@@ -21,3 +21,29 @@ REGARDING GenericList.h
 When defining a list, use define_list(item), but only use it where the list you are defining the item to have a list made out of it. Thatway, to use a list of that type, you only have to import the item.h file.
 
 When defining a type, it has to be one word. So if the type is a struct, enum, or other sort of multi-word types, you need to typedef them.
+
+REGARDING COLORS
+
+Since Ncurses allows us to use the colors on the terminal, colors need to be
+paired and maped to integers. The Following is that mapping:
++-------+-------+-------+-------+-------+-------+-------+-------+-------+
+|F/B    |BLACK  |RED    |GREEN  |YELLOW |BLUE   |MAGENTA|CYAN   |WHITE  |
++-------+-------+-------+-------+-------+-------+-------+-------+-------+
+|BLACK  |11     |12     |13     |14     |15     |16     |17     |18     |
++-------+-------+-------+-------+-------+-------+-------+-------+-------+
+|RED    |21     |22     |23     |24     |25     |26     |27     |28     |
++-------+-------+-------+-------+-------+-------+-------+-------+-------+
+|GREEN  |31     |32     |33     |34     |35     |36     |37     |38     |
++-------+-------+-------+-------+-------+-------+-------+-------+-------+
+|YELLOW |41     |42     |43     |44     |45     |46     |47     |48     |
++-------+-------+-------+-------+-------+-------+-------+-------+-------+
+|BLUE   |51     |52     |53     |54     |55     |56     |57     |58     |
++-------+-------+-------+-------+-------+-------+-------+-------+-------+
+|MAGENTA|61     |62     |63     |64     |65     |66     |67     |68     |
++-------+-------+-------+-------+-------+-------+-------+-------+-------+
+|CYAN   |71     |72     |73     |74     |75     |76     |77     |78     |
++-------+-------+-------+-------+-------+-------+-------+-------+-------+
+|WHITE  |81     |82     |83     |84     |85     |86     |87     |88     |
++-------+-------+-------+-------+-------+-------+-------+-------+-------+
+
+
