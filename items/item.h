@@ -8,6 +8,7 @@ typedef struct item{
 	long effect_val;
 	char stat[5];
 	float weight;
+	List(string)* desc;
 }item_t;
 
 define_list(item_t);

@@ -4,11 +4,6 @@
 #include <ncurses.h> /*for all the ncurses stuff */
 #include "GenericList.h"
 
-typedef char* string;
-
-define_list(int)
-define_list(string);
-
 void print_startup_options_help(){
 	printf(" SRN is a terminal based RPG-MUD\n");
 	printf(" To use this program, use the following parameters.\n");

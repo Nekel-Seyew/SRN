@@ -1,6 +1,6 @@
 #ifndef PLAYER_H
 #define PLAYER_H
-
+#include "../GenericList.h"
 #include "../items/item.h"
 
 struct Player{
@@ -21,6 +21,8 @@ struct Player{
 	long attack;
 	//inventory
 	List(item_t)* inventory;
+	//mist
+	List(string)* background;
 };
 
 

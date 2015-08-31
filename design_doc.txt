@@ -27,16 +27,115 @@ Classes:
 		Buff           (Raise Stats of Allies)
 		DPS            (Deal High Damage to Single target)
 	
-	Wizard range/cc/buff/debuff
+	Wizard
+		A Wizard is a student of the Arcane, taping into the mystical
+		energy of creation, and harnessing it for their own benefit. A
+		Wizard has to spend many years training, and perfecting their
+		art before they are acknowledged by fellow wizards as a peer.
+		
+		Roles:    range/cc/buff/debuff
+		Armors:   cloth
+		Weapons:  Staffs, Orbs, Wands
+		
+		
 	Fighter tank/dps
-	Rogue dps/debuff
-	
+	Rogue dps/debuff	
 	Monk - dps
 	Cleric - anti-deBuff
 	Warlock - cc
-	Paladin - buff-tank
+	Paladin - buff/tank
 	Druid - CC/debuff
 	BattleMage - tank/debuff
+		Sometimes, students of magic find that hiding on the edges of
+		the battle just doesn't suit them. Even more rarely, fighters
+		find out that they have an affinity for the arcane. Both wind
+		up becoming battlemages: excellent fighters and wizards who
+		employ both arcane and martial skills to take down foes.
+		
+		Roles:   tank/debuff
+		Armors:  cloth, leather, chainmail 
+		Weapons: one handed, two handed, Staffs
+
 	Bard - Buff/debuff
-	ranger - dps/cc
-	wanderer - mimic
+	Ranger - dps/cc
+	Wanderer - mimic
+		A Wanderer seeks adventure everywhere they go, and learns many
+		skills along the way. Wanderers are dedicated to trying to
+		learn everything there is to learn, often by copying the
+		technique of others, rarely if ever creating something new.
+		While very wise in their ways, Mimics require others around to
+		be of any real use.
+		
+		Special: A Wanderer can only copy an action done by someone
+		nearby in the last 2 turns. The effectiveness of their attack
+		or skill is determined by their stats and weapons applied to
+		the attack or skill being used, multiplied by (wanderer_level
+		/ original_user_level)
+
+
+
+SCREENS:
+	Battle:
++-----------------------------------------------------------------------------+
+|,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,|,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,|
+|,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,|,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,|
+|,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,|,,,,,,,,,, [._.] ,,,,,,,,,,,,,,,,,,,,,,|
+|,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,|,,,,,,,,,,,,,|,,,,,,,[._.],,,,,,,,,,,,,|
+|,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,|,,,,,,,,,,,,/|\,,,,,,,,|,,,,,,,,,,,,,,,|
+|,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,|,,,,,,,,,,,/ | \,,,,,,/|\,,,,,,,,,,,,,,|
+|,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,|,,,,,,,,,,,,/ \,,,,,,/ | \,,,,,,,,,,,,,|
+|,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,|,,,,,,,,,,,/   \,,,,,,/ \,,,,,,,,,,,,,,|
+|,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,|,,,,,,,,,,,,,,,,,,,,,/   \,,,,,,,,,,,,,|
+|,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,|,,,,,,,[._.],,,,[._.],,,,,,,,,,,,,,,,,,|
+|,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,|,,,,,,,,,|,,,,,,,,|,,,,,,,,,,,,,,,,,,,,|
+|,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,|,,,,,,,,/|\,,,,,,/|\,,,,,,,,,,,,,,,,,,,|
+|,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,|,,,,,,,/ | \,,,,/ | \,,,,,,,,,,,,,,,,,,|
+|,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,|,,,,,,,,/ \,,,,,,/ \,,,,,,,,,,,,,,,,,,,|
+|,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,|,,,,,,,/   \,,,,/   \,,,,,,,,,,,,,,,,,,|
++-------------------------------------+---------------------------------------+
+|Michael                  [###       ]|  ATTACK  ITEMS  LORE                  |
+|Dave                     [##########]+----chat-------------------------------+
+|Rebecca                  [##########]|Michael>Someone please Heal me!        |
+|Sarah                    [##########]|Sarah>I'm out of potions! why didn't   |
+|,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,|you buy any when we were in town???    |
+|,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,|>>wait, what shou                      |
++-------------------------------------+---------------------------------------+
+
+CharacterDesignSpace: 
+	character desins are 13 wide by 7 tall, giving 91 character spaces to
+	work with, including color!
++-------------+
+|             |
+|             |
+|             |
+|             |
+|             |
+|             |
+|             |
++-------------+
+
+Campfire:
++-----------------------------------------------------------------------------+
+|,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,|
+|,,,,,,,,,Michael,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,|
+|,,,,,,,, [._.] ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Rebecca,,,,,,,,,,|
+|,,,,,,,,,,,|,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,[._.],,,,,,,,,,,|
+|,,,,,,,,,,/|\,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,|,,,,,,,,,,,,,|
+|,,,,,,,,,/ | \,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,/|\,,,,,,,,,,,,|
+|,,,,,,,,,,/ \,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,/ | \,,,,,,,,,,,|
+|,,,,,,,,,/   \,,,,,,,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,/ \,,,,,,,,,,,,|
+|,,,,,,,Sarah,,,,,,,,,,,,,,,,,,,,,SS,,,,,,,,,,,,,,,,,,,,Dave,,/   \,,,,,,,,,,,|
+|,,,,,,,[._.],,,,,,,,,,,,,,,,,,,,SS,,,,,,,,,,,,,,,,,,,,[._.],,,,,,,,,,,,,,,,,,|
+|,,,,,,,, |,,,,,,,,,,,,,,,,,,,,,SSS,,,,,,,,,,,,,,,,,,,,,,|,,,,,,,,,,,,,,,,,,,,|
+|,,,,,,,,/|\,,,,,,,,,,,,,,,,,,, SS  ,,,,,,,,,,,,,,,,,,,,/|\,,,,,,,,,,,,,,,,,,,|
+|,,,,,,,/ | \,,,,,,,,,,,,,,,,,,SSS  ,,,,,,,,,,,,,,,,,,,/ | \,,,,,,,,,,,,,,,,,,|
+|,,,,,,, / \,,,,,,,,,,,,,,,,,,,xxxxx,,,,,,,,,,,,,,,,,,,,/ \,,,,,,,,,,,,,,,,,,,|
+|,,,,, ,/   \,,,,,,,,,,,,,,,,,xxxxxxx,,,,,,,,,,,,,,,,,,/   \,,,,,,,,,,,,,,,,,,|
++--chat-----------------------------------------------------------------------+
+|Micahel@Who wants to go to the "Dungeon of Arazor?                           |
+|Sarah@Isn't that like, 10 levels higher than us?                             |
+|Dave@WHAT? 10 LEVELS?? MICHAEL, ARE YOU CRAZY???                             |
+|Rebecca@ALL CAPS IS CRUISE CONTROL FOR COOL                                  |
+|Dave@Seriously, Michael, the last battle nearly wrecked us.                  |
+|>>Comeon guys, we go                                                         |
++-----------------------------------------------------------------------------+
