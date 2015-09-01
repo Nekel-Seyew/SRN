@@ -1,11 +1,3 @@
-/*
-
-important notes:
-
-the int (*cmp)(const void*,const void*) will be passed type* items.
-
-*/
-
 #ifndef _GENERIC_LIST_H_
 #define _GENERIC_LIST_H_
 
@@ -119,12 +111,4 @@ the int (*cmp)(const void*,const void*) will be passed type* items.
 #define new_list(type) \
     new_list_##type()
 
-#endif
-
-#ifndef _BASIC_LIST_TYPES_
-#define _BASIC_LIST_TYPES_
-typedef char* string;
-define_list(string);
-define_list(int);
-define_list(float);
 #endif
