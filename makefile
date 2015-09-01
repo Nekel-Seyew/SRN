@@ -7,5 +7,8 @@ TARGET = game
 jsmn.o: jsmn/jsmn.c jsmn/jsmn.h
 	$(cc) -O3 -c jsmn/jsmn.c
 
+default:
+	$(cc) -o srn player/playerSpriteCreation.c main.c $(LDFLAGS)
+
 clean:
 	rm jsmn.o

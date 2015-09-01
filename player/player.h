@@ -3,6 +3,11 @@
 #include "../GenericList.h"
 #include "../items/item.h"
 
+struct player_char{
+	char chars[7][13];
+	int colors[7][13];
+}
+
 struct Player{
 	long health;
 	long max_health;
@@ -21,9 +26,11 @@ struct Player{
 	long attack;
 	//inventory
 	List(item_t)* inventory;
-	//mist
+	//misc
 	List(string)* background;
+	struct player_char sprite;
 };
+
 
 
 

@@ -1,8 +1,18 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <time.h>
 #include <unistd.h> /* for getopt */
 #include <ncurses.h> /*for all the ncurses stuff */
 #include "GenericList.h"
+#include "game/gameMode.h"
+
+typedef char* string;
+//all lists go here
+define_list(string)
+define_list(gameMode_t)
+
+//extern variables
+extern gameMode_t playerCreationMode; 
 
 void print_startup_options_help(){
 	printf(" SRN is a terminal based RPG-MUD\n");
@@ -57,9 +67,26 @@ int main(int argc, string argv[]){
 		//launch server code
 	}
 	else{
+		clock_t timeNowMs = (1000* clock())/(CLOCKS_PER_SEC);
 		init_ncurses();
-		//add timing code while loop
-		//add updating and drawing code
+		halfdelay(1);
+		int done = 0;
+		do{
+			//add timing code while loop
+			//add updating and drawing code
+			int c = getch();
+			playerCreationMode.update(c);
+			playerCreationMode.draw(stdscr);
+			getch();
+			//timing code
+			clock_t now = (1000* clock())/(CLOCKS_PER_SEC);
+ 			int k = 0;
+			while((now = now = (1000* clock())/(CLOCKS_PER_SEC)) - timeNowMs < 16){
+				k += 1;
+			}
+			timeNowMs = now;
+
+		}while(!done);
 		endwin();
 	}
 	return 0;
