@@ -46,6 +46,7 @@ void init_ncurses(){
 	noecho();
 	raw();
 	timeout(0);
+	curs_set(0);
 }
 
 int main(int argc, string argv[]){
