@@ -12,4 +12,6 @@ typedef struct gameMode{
 	void* stateData;
 }gameMode_t;
 
+int gameModeCmp(gameMode_t a, gameMode_t b);
+
 #endif
