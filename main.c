@@ -13,6 +13,7 @@ define_list(gameMode_t)
 
 //extern variables
 extern gameMode_t playerCreationMode; 
+extern gameMode_t escape_screen;
 
 void print_startup_options_help(){
 	printf(" SRN is a terminal based RPG-MUD\n");
@@ -37,6 +38,7 @@ void init_ncurses(){
 			}
 		}
 	}
+	noecho();
 }
 
 int main(int argc, string argv[]){
@@ -71,13 +73,26 @@ int main(int argc, string argv[]){
 		init_ncurses();
 		halfdelay(1);
 		int done = 0;
+		gameMode_t game_mode;
+		game_mode_t prev_mode;
 		do{
 			//add timing code while loop
 			//add updating and drawing code
 			int c = getch();
-			playerCreationMode.update(c);
-			playerCreationMode.draw(stdscr);
-			getch();
+			if(c == 27 && game_mode != escape_screen){ //EscapeKey
+				prev_mode = game_mode;
+				game_mode = escape_screen; 
+			}
+			int update = game_mode.update(c);
+			int draw   = game_mode.draw(stdscr);
+			
+			if(update == EXIT_GAME){
+				done = 1;
+			}else if(update == RETURN){
+				game_mode = prev_mode;
+				prev_mode = (gameMode_t)NULL;
+			} 			
+
 			//timing code
 			clock_t now = (1000* clock())/(CLOCKS_PER_SEC);
  			int k = 0;
