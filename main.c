@@ -87,6 +87,7 @@ int main(int argc, string argv[]){
 			//add updating and drawing code
 			int c = getch();
 			if(c == 27 && !gameModeCmp(game_mode,escape_screen)){ //EscapeKey
+				mvprintw(0,0,"GOING TO ESCAPE SCREEN");
 				prev_mode = game_mode;
 				game_mode = escape_screen; 
 			}
