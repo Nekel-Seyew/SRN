@@ -45,7 +45,7 @@ void init_ncurses(){
 	}
 	noecho();
 	raw();
-	halfdelay(-1);
+	timeout(0);
 }
 
 int main(int argc, string argv[]){
@@ -100,12 +100,12 @@ int main(int argc, string argv[]){
 			} 			
 
 			//timing code
-			clock_t now = (1000* clock())/(CLOCKS_PER_SEC);
+			/*clock_t now = (1000* clock())/(CLOCKS_PER_SEC);
  			int k = 0;
 			while((now = now = (1000* clock())/(CLOCKS_PER_SEC)) - timeNowMs < 16){
 				k += 1;
 			}
-			timeNowMs = now;
+			timeNowMs = now;*/
 
 		}while(!done);
 		endwin();

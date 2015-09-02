@@ -8,6 +8,7 @@ struct player_sprite_creation_data{
 struct player_sprite_creation_data sprc_data;
 
 int player_sprite_creation_draw(WINDOW* win){
+	werase(win);
 	box(win,0,0);
 	int i=0;
 	//it's row major

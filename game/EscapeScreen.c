@@ -10,6 +10,7 @@ char* escape_screen_options[] = {"Return","Exit Game"};
 struct escape_screen_data escreen_data={2,-1};
 
 int escape_screen_draw(WINDOW* win){
+	werase(win);
 	int y,x;
 	getmaxyx(win,y,x);
 	//box drawn
@@ -51,8 +52,6 @@ int escape_screen_update(int userInput){
 			case 0:
 				return RETURN;
 			case 1:
-				break;
-			case 2:
 				return EXIT_GAME;
 			default:
 				break;
