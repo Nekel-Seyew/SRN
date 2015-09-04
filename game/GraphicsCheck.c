@@ -1,9 +1,11 @@
 #include <ncurses.h>
 #include "gameMode.h"
 
+int graphics_test_data = 0;
+
 void special_chars_test(WINDOW* win, int y){
-	y = (y<=8 ? y : 8);
-	y = (y>=0 ? y : 0);
+	//y = (y<=8 ? y : 8);
+	//y = (y>=0 ? y : 0);
 	char* specials[] = {"Upper left corner         %c  ACS_ULCORNER\n",
 	                    "Lower left corner         %c  ACS_LLCORNER\n",
 			    "Upper right corner        %c  ACS_URCORNER\n",
@@ -50,4 +52,35 @@ void special_chars_test(WINDOW* win, int y){
 	}
 }
 
+int graphics_test_draw(WINDOW* win){
+	werase(win);
+	special_char_test(win,graphics_test_data);
+	int i=0,j=0;
+	for(i = 0; i<8; ++i){
+		for(j = 0; j<8; ++j){
+			wattron(win,COLOR_PAIR(i*8+j));
+			mvwprintw(win,(35+i)-graphics_test_data,j+2,"aa");
+			wattroff(win,COLOR_PAIR(i*8+j));
+		}
+	}
+	return 0;
+}
 
+int graphics_test_update(int userinput){
+	if(userinput == KEY_UP){
+		graphics_test_data -=1;
+	}else if(userinput == KEY_DOWN){
+		graphics_test_data +=1;
+	}else if(userinput == 'q'){
+		return RETURN;
+	}
+
+	if(graphics_test_data < 0){
+		graphics_test_data = 0;
+	}else if(graphice_test_data >  20){
+		graphics_test_data = 20;
+	}
+	return 0;
+}
+
+gameMode_t graphics_test = {&graphics_test_draw,&graphics_test_update,(void*)&graphics_test_data};

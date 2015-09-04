@@ -37,9 +37,9 @@ void init_ncurses(){
 	if(has_colors()){
 		start_color();
 		int i=1,j=1;
-		for(i=1; (i-1)<8; ++i){
-			for(j=1; (j-1)<8; ++j){
-				init_pair(10*i + j, (j-1), (i-1));
+		for(i=0; (i)<8; ++i){
+			for(j=0; (j)<8; ++j){
+				init_pair(8*i+j, (j), (i));
 			}
 		}
 	}
