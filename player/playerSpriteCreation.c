@@ -2,7 +2,8 @@
 #include "../game/gameMode.h"
 
 struct player_sprite_creation_data{
-	
+	int cur_x, cur_y;
+
 };
 
 struct player_sprite_creation_data sprc_data;
