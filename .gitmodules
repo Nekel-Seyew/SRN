@@ -1,0 +1,3 @@
+[submodule "asprintf.c"]
+	path = asprintf.c
+	url = https://github.com/littlstar/asprintf.c
