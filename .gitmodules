@@ -1,3 +1,6 @@
 [submodule "asprintf.c"]
 	path = asprintf.c
 	url = https://github.com/littlstar/asprintf.c
+[submodule "Collections-C"]
+	path = Collections-C
+	url = https://github.com/srdja/Collections-C
