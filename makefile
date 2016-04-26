@@ -1,14 +1,20 @@
-cc = gcc
-CFLAGS = -O3 -Wall -std=c99
+cc = clang
+CFLAGS = -O3 -Wall -c
 LDFLAGS = -lm -lncurses
+EXECUTABLE=srn
+SOURCES=main.c jsmn/jsmn.c game/EscapeScreen.c game/GraphicsCheck.c player/playerSpriteCreation.c graphics/graphics.c asprintf/asprintf.c
+OBJECTS=$(SOURCES:.c=.o)
 
-TARGET = game
 
-jsmn.o: jsmn/jsmn.c jsmn/jsmn.h
-	$(cc) -O3 -c jsmn/jsmn.c
 
-default:
-	$(cc) -o srn game/EscapeScreen.c player/playerSpriteCreation.c main.c $(LDFLAGS)
+all: $(SOURCES) $(EXECUTABLE)
+
+$(EXECUTABLE): $(OBJECTS)
+	$(cc)  $(LDFLAGS) $(OBJECTS) -o $@
+
+.c.o:
+	$(cc) $(CFLAGS) $< -o $@
+
 
 clean:
-	rm jsmn.o
+	rm -rf $(OBJECTS) $(EXECUTABLE)

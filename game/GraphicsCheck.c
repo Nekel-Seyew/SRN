@@ -3,7 +3,7 @@
 
 int graphics_test_data = 0;
 
-void special_chars_test(WINDOW* win, int y){
+void special_char_test(WINDOW* win, int y){
 	//y = (y<=8 ? y : 8);
 	//y = (y>=0 ? y : 0);
 	char* specials[] = {"Upper left corner         %c  ACS_ULCORNER\n",
@@ -77,7 +77,7 @@ int graphics_test_update(int userinput){
 
 	if(graphics_test_data < 0){
 		graphics_test_data = 0;
-	}else if(graphice_test_data >  20){
+	}else if(graphics_test_data >  20){
 		graphics_test_data = 20;
 	}
 	return 0;

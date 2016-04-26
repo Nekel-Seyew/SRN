@@ -2,11 +2,7 @@
 #define PLAYER_H
 #include "../GenericList.h"
 #include "../items/item.h"
-
-struct player_char{
-	char chars[7][13];
-	int colors[7][13];
-}
+#include "../graphics/graphics.h"
 
 struct Player{
 	long health;
@@ -28,7 +24,7 @@ struct Player{
 	List(item_t)* inventory;
 	//misc
 	List(string)* background;
-	struct player_char sprite;
+	struct sprite* sprite;
 };
 
 

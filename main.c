@@ -5,6 +5,7 @@
 #include <ncurses.h> /*for all the ncurses stuff */
 #include "GenericList.h"
 #include "game/gameMode.h"
+#include "graphics/graphics.h"
 
 typedef char* string;
 //all lists go here
@@ -31,29 +32,11 @@ void print_startup_options_help(){
 	printf("	-v		be verbose in loging.\n");
 }
 
-void init_ncurses(){
-	initscr();
-	keypad(stdscr, 1);
-	if(has_colors()){
-		start_color();
-		int i=1,j=1;
-		for(i=0; (i)<8; ++i){
-			for(j=0; (j)<8; ++j){
-				init_pair(8*i+j, (j), (i));
-			}
-		}
-	}
-	noecho();
-	raw();
-	timeout(0);
-	curs_set(0);
-}
-
 int main(int argc, string argv[]){
 	int c;
 	int portnum;
 	char* game_address;
-	int verbose, server;
+	int verbose=0, server=0;
 	while ( (c = getopt(argc, argv, "sp:g:hv")) != -1){
 		switch(c){
 			case 's':

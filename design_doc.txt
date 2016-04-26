@@ -119,18 +119,18 @@ Campfire:
 |                                                                             |
 |        Michael                                                              |
 |         [._.]                                              Rebecca          |
-|,,,,,,,,,,,|,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,[._.],,,,,,,,,,,|
-|,,,,,,,,,,/|\,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,|,,,,,,,,,,,,,|
-|,,,,,,,,,/ | \,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,/|\,,,,,,,,,,,,|
-|,,,,,,,,,,/ \,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,/ | \,,,,,,,,,,,|
-|,,,,,,,,,/   \,,,,,,,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,/ \,,,,,,,,,,,,|
-|,,,,,,,Sarah,,,,,,,,,,,,,,,,,,,,,SS,,,,,,,,,,,,,,,,,,,,Dave,,/   \,,,,,,,,,,,|
-|,,,,,,,[._.],,,,,,,,,,,,,,,,,,,,SS,,,,,,,,,,,,,,,,,,,,[._.],,,,,,,,,,,,,,,,,,|
-|,,,,,,,, |,,,,,,,,,,,,,,,,,,,,,SSS,,,,,,,,,,,,,,,,,,,,,,|,,,,,,,,,,,,,,,,,,,,|
-|,,,,,,,,/|\,,,,,,,,,,,,,,,,,,, SS  ,,,,,,,,,,,,,,,,,,,,/|\,,,,,,,,,,,,,,,,,,,|
-|,,,,,,,/ | \,,,,,,,,,,,,,,,,,,SSS  ,,,,,,,,,,,,,,,,,,,/ | \,,,,,,,,,,,,,,,,,,|
-|,,,,,,, / \,,,,,,,,,,,,,,,,,,,xxxxx,,,,,,,,,,,,,,,,,,,,/ \,,,,,,,,,,,,,,,,,,,|
-|,,,,, ,/   \,,,,,,,,,,,,,,,,,xxxxxxx,,,,,,,,,,,,,,,,,,/   \,,,,,,,,,,,,,,,,,,|
+|           |                                                 [._.]           |
+|,,,,,,,,,,/|\                                                  |             |
+|,,,,,,,,,/ | \,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,/|\            |
+|,,,,,,,,,,/ \,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,/ | \           |
+|,,,,,,,,,/   \,,,,,,,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,/ \            |
+|,,,,,,,Sarah,,,,,,,,,,,,,,,,,,,,,SS,,,,,,,,,,,,,,,,,,,,Dave  /   \           |
+|,,,,,,,[._.],,,,,,,,,,,,,,,,,,,,SS,,,,,,,,,,,,,,,,,,,,[._.]                  |
+|,,,,,,,, |,,,,,,,,,,,,,,,,,,,,,SSS,,,,,,,,,,,,,,,,,,,,,,|                    |
+|,,,,,,,,/|\,,,,,,,,,,,,,,,,,,, SS                      /|\                   |
+|,,,,,,,/ | \,,,,,,,,,,,,,,,,,,SSS                     / | \                  |
+|,,,,,,, / \,,,,,,,,,,,,,,,,,,,xxxxx                    / \                   |
+|,,,,, ,/   \,,,,,,,,,,,,,,,,,xxxxxxx                  /   \                  |
 +--chat-----------------------------------------------------------------------+
 |Micahel@Who wants to go to the "Dungeon of Arazor?                           |
 |Sarah@Isn't that like, 10 levels higher than us?                             |
@@ -143,8 +143,21 @@ Campfire:
 
 Server Architecture:
 
-Based on an IRC idea: groups are lists maintained by every server. A server can
-be given another server to connect to, and add its capabilities to the network.
+Based on an IRC idea: the world is simply a series of maps/dungeons. Any given
+area is a list which is maintained by every server in the network. There are
+still unique instances for groups or solo people which will be propogated 
+through to all the different servers. 
 
+The Enemy AI will be constructing new dungeons and enemies based on statistics
+of the server network. Servers will routinely (aka, at least once an hour) 
+write the world state to hard-drive. 
 
-
+Dungeons are private instances for individuals and groups. Dungeons will be
+downloaded from the network, but any/all AI will be ran by the computer of the
+person who started the instance. Thus, when players send update information
+for dungeons, they will simply be a message to be passed along by the servers
+to the user running the dungeon, and any server update information for the
+dungeon will be passed along back to all players in a similar manner. Results
+of the dungeon raid will be sent from the dungeon running computer to the 
+network, which will then pass along the information to maintain a consistent
+world across the entire network.

@@ -58,7 +58,6 @@
 		size_t i=0;\
 		for(i=0; i<list->_size; ++i){ \
 			if(cmp(&elem,&(list->_data[i])) == 0){ \
-				size_t j; \
 				memcpy(&(list->_data[i]),&(list->_data[i+1]),sizeof(type)*(list->_size - i -1)); \
 				memset(&(list->_data[list->_size -1 ]),0,sizeof(type)); \
 				list->_size -= 1; \
