@@ -3,14 +3,6 @@
 
 #include <stdlib.h>
 
-#define JSON_TYPE_CONVERT(t,x) (t==JSON_DOUBLE ? ((double*)x) : \
-		               (t==JSON_FLOAT  ? ((float*)x)  : \
-			       (t==JSON_INT    ? ((int*)x)    : \
-			       (t==JSON_CHAR   ? ((char*)x)   : \
-			       (t==JSON_LONG   ? ((long*)x)   : \
-			       (t==JSON_STRING ? ((char**)x)  : \
-			       (0)))))))
-
 typedef enum{
 	JSON_DOUBLE = 0,
 	JSON_FLOAT  = 1,

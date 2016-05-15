@@ -1,11 +1,11 @@
 #include "json.h"
-#include "../asprintf/asprintf.h"
+#include "../asprintf.c/asprintf.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 char* merge_delete(char* a, char* b, char* joiner){
-	char* ret = merge_string(a,b,joiner);	
+	char* ret = merge_string(a,b,joiner);
 	free(a);
 	free(b);
 	return ret;
@@ -17,11 +17,11 @@ char* merge_string(char* a, char* b, char* joiner){
 
 	char* ret = malloc(sizeof(char)*(lena+lenb+lenj+1));
 	memset(ret,0,lena+lenb+lenj+1);
-	
+
 	strcat(ret,a);
 	strcat(ret,joiner);
 	strcat(ret,b);
-	
+
 	ret[lena+lenb+lenj] = '\0';
 
 	return ret;
@@ -36,7 +36,20 @@ char* json_array(const char* fmt, jsonarray_t* array){
 	size_t i=0;
 	for(i=0; i<len; ++i){
 		char* a;
-		asprintf(&a,fmt,(JSON_TYPE_CONVERT(array->type,array->data)[i]));
+		if(array->type == JSON_CHAR){
+            asprintf(&a,fmt,((char*)array->data)[i]);
+		}else if(array->type == JSON_DOUBLE){
+            asprintf(&a,fmt,((double*)array->data)[i]);
+		}else if(array->type == JSON_FLOAT){
+            asprintf(&a,fmt,((float*)array->data)[i]);
+		}else if(array->type == JSON_INT){
+            asprintf(&a,fmt,((int*)array->data)[i]);
+		}else if(array->type == JSON_LONG){
+            asprintf(&a,fmt,((long*)array->data)[i]);
+		}else if(array->type == JSON_STRING){
+            asprintf(&a,fmt,((char**)array->data)[i]);
+		}
+		//asprintf(&a,fmt,(JSON_TYPE_CONVERT(array->type,array->data)[i]));
 		ret = merge_delete(ret,a,",");
 	}
 	char* fret = malloc(sizeof(char)*2); fret[0]=']'; fret[1]='\0';
