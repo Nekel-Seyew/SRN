@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="SRN" />
+		<Option pch_mode="2" />
+		<Option compiler="clang" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/SRN" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="clang" />
+				<Compiler>
+					<Add option="-Wextra-tokens" />
+					<Add option="-pedantic" />
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/SRN" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="clang" />
+				<Compiler>
+					<Add option="-fomit-frame-pointer" />
+					<Add option="-O4" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Weverything" />
+		</Compiler>
+		<Unit filename="Collections-C/src/array.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Collections-C/src/array.h" />
+		<Unit filename="Collections-C/src/common.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Collections-C/src/common.h" />
+		<Unit filename="Collections-C/src/deque.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Collections-C/src/deque.h" />
+		<Unit filename="Collections-C/src/hashset.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Collections-C/src/hashset.h" />
+		<Unit filename="Collections-C/src/hashtable.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Collections-C/src/hashtable.h" />
+		<Unit filename="Collections-C/src/list.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Collections-C/src/list.h" />
+		<Unit filename="Collections-C/src/queue.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Collections-C/src/queue.h" />
+		<Unit filename="Collections-C/src/slist.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Collections-C/src/slist.h" />
+		<Unit filename="Collections-C/src/stack.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Collections-C/src/stack.h" />
+		<Unit filename="Collections-C/src/treeset.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Collections-C/src/treeset.h" />
+		<Unit filename="Collections-C/src/treetable.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Collections-C/src/treetable.h" />
+		<Unit filename="GenericList.h" />
+		<Unit filename="asprintf.c/asprintf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="asprintf.c/asprintf.h" />
+		<Unit filename="client/client.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="game/EscapeScreen.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="game/GraphicsCheck.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="game/gameMode.h" />
+		<Unit filename="game/quest.h" />
+		<Unit filename="graphics/graphics.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/graphics.h" />
+		<Unit filename="items/item.h" />
+		<Unit filename="jsmn/jsmn.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jsmn/jsmn.h" />
+		<Unit filename="json/json.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="json/json.h" />
+		<Unit filename="main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="player/player.h" />
+		<Unit filename="player/playerSpriteCreation.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

@@ -1,0 +1,147 @@
+# depslib dependency file v1.0
+1463296825 source:/home/nekelluna/Documents/SRN/client/client.c
+	<stdlib.h>
+	<ncurses.h>
+
+1463296828 source:/home/nekelluna/Documents/SRN/Collections-C/src/array.c
+	"array.h"
+
+1463296828 /home/nekelluna/Documents/SRN/Collections-C/src/array.h
+	"common.h"
+
+1463296828 /home/nekelluna/Documents/SRN/Collections-C/src/common.h
+	<stdlib.h>
+	<stdint.h>
+	<stdbool.h>
+	<string.h>
+
+1463296828 source:/home/nekelluna/Documents/SRN/Collections-C/src/common.c
+	"common.h"
+
+1463296828 source:/home/nekelluna/Documents/SRN/Collections-C/src/deque.c
+	"deque.h"
+
+1463296828 /home/nekelluna/Documents/SRN/Collections-C/src/deque.h
+	"common.h"
+
+1463296828 source:/home/nekelluna/Documents/SRN/Collections-C/src/hashset.c
+	"hashset.h"
+
+1463296828 /home/nekelluna/Documents/SRN/Collections-C/src/hashset.h
+	"common.h"
+	"hashtable.h"
+
+1463296828 /home/nekelluna/Documents/SRN/Collections-C/src/hashtable.h
+	"array.h"
+	"common.h"
+
+1463296828 source:/home/nekelluna/Documents/SRN/Collections-C/src/hashtable.c
+	"hashtable.h"
+
+1463296828 source:/home/nekelluna/Documents/SRN/Collections-C/src/list.c
+	"list.h"
+
+1463296828 /home/nekelluna/Documents/SRN/Collections-C/src/list.h
+	"common.h"
+
+1463296828 source:/home/nekelluna/Documents/SRN/Collections-C/src/queue.c
+	"queue.h"
+
+1463296828 /home/nekelluna/Documents/SRN/Collections-C/src/queue.h
+	"common.h"
+	"deque.h"
+
+1463296828 source:/home/nekelluna/Documents/SRN/Collections-C/src/slist.c
+	"slist.h"
+
+1463296828 /home/nekelluna/Documents/SRN/Collections-C/src/slist.h
+	"common.h"
+
+1463296828 source:/home/nekelluna/Documents/SRN/Collections-C/src/stack.c
+	"array.h"
+	"stack.h"
+
+1463296828 /home/nekelluna/Documents/SRN/Collections-C/src/stack.h
+	"common.h"
+	"array.h"
+
+1463296828 source:/home/nekelluna/Documents/SRN/Collections-C/src/treeset.c
+	"treeset.h"
+
+1463296828 /home/nekelluna/Documents/SRN/Collections-C/src/treeset.h
+	"common.h"
+	"treetable.h"
+
+1463296828 /home/nekelluna/Documents/SRN/Collections-C/src/treetable.h
+	"common.h"
+
+1463296828 source:/home/nekelluna/Documents/SRN/Collections-C/src/treetable.c
+	"treetable.h"
+
+1463296825 source:/home/nekelluna/Documents/SRN/game/EscapeScreen.c
+	<ncurses.h>
+	"gameMode.h"
+
+1463296825 /home/nekelluna/Documents/SRN/game/gameMode.h
+	<ncurses.h>
+	"../GenericList.h"
+
+1463296825 /home/nekelluna/Documents/SRN/GenericList.h
+	<string.h>
+	<stdlib.h>
+
+1463296825 source:/home/nekelluna/Documents/SRN/game/GraphicsCheck.c
+	<ncurses.h>
+	"gameMode.h"
+
+1463296896 source:/home/nekelluna/Documents/SRN/asprintf.c/asprintf.c
+	<stdlib.h>
+	<stdio.h>
+	<stdarg.h>
+	"asprintf.h"
+
+1463296896 /home/nekelluna/Documents/SRN/asprintf.c/asprintf.h
+	<stdarg.h>
+
+1463296825 source:/home/nekelluna/Documents/SRN/jsmn/jsmn.c
+	<stdlib.h>
+	"jsmn.h"
+
+1463296825 /home/nekelluna/Documents/SRN/jsmn/jsmn.h
+	<stddef.h>
+
+1463441266 source:/home/nekelluna/Documents/SRN/json/json.c
+	"json.h"
+	"../asprintf.c/asprintf.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1463441308 /home/nekelluna/Documents/SRN/json/json.h
+	<stdlib.h>
+
+1463296825 source:/home/nekelluna/Documents/SRN/main.c
+	<stdlib.h>
+	<stdio.h>
+	<time.h>
+	<unistd.h>
+	<ncurses.h>
+	"GenericList.h"
+	"game/gameMode.h"
+	"graphics/graphics.h"
+
+1463300248 /home/nekelluna/Documents/SRN/graphics/graphics.h
+	<ncurses.h>
+
+1463300248 source:/home/nekelluna/Documents/SRN/graphics/graphics.c
+	"graphics.h"
+	<assert.h>
+	<string.h>
+	<stdlib.h>
+	<ncurses.h>
+	"../jsmn/jsmn.h"
+
+1463296825 source:/home/nekelluna/Documents/SRN/player/playerSpriteCreation.c
+	<ncurses.h>
+	"../game/gameMode.h"
+
