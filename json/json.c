@@ -4,6 +4,12 @@
 #include <stdlib.h>
 #include <string.h>
 
+char* truefalse[2] = {"true", "false"};
+
+inline char* json_bool(int i){
+    return i ? truefalse[0] : truefalse[1];
+}
+
 char* merge_delete(char* a, char* b, char* joiner){
 	char* ret = merge_string(a,b,joiner);
 	free(a);
@@ -48,6 +54,10 @@ char* json_array(const char* fmt, jsonarray_t* array){
             asprintf(&a,fmt,((long*)array->data)[i]);
 		}else if(array->type == JSON_STRING){
             asprintf(&a,fmt,((char**)array->data)[i]);
+		}else if(array->type == JSON_ARRAY){
+            a = json_array(fmt,&((jsonarray_t*)array->data)[i]);
+		}else{
+            a = "10";
 		}
 		//asprintf(&a,fmt,(JSON_TYPE_CONVERT(array->type,array->data)[i]));
 		ret = merge_delete(ret,a,",");

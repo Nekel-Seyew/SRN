@@ -8,15 +8,27 @@ typedef enum{
 	JSON_FLOAT  = 1,
 	JSON_INT    = 2,
 	JSON_CHAR   = 3,
+	JSON_BOOL   = 3,
 	JSON_LONG   = 4,
-	JSON_STRING = 5
+	JSON_STRING = 5,
+	JSON_ARRAY  = 6,
 } jsontype_t;
 
-typedef struct json_array_type{
+typedef struct json_array_type{//only c-like arrays: uniform data type
+	jsontype_t type;
 	void* data;
 	size_t length;
-	jsontype_t type;
 } jsonarray_t;
+
+struct json_object_item{
+    jsontype_t type;
+    void* object;
+};
+
+typedef struct json_object{
+    size_t length;
+    struct json_object_item* data;
+} jsonobject_t;
 
 //takes in two strings, merges them together with the joiner string seperating
 //them, deletes the two passed in strings, and returns the resulting string.
@@ -24,5 +36,8 @@ char* merge_delete(char* a, char* b, char* joiner);
 char* merge_string(char* a, char* b, char* joiner);
 
 char* json_array(const char* fmt, jsonarray_t* array);
+char* json_numberf(const char* fmt, double f);
+char* json_numberi(const char* fmt, long i);
+char* json_bool(int i);
 
 #endif
