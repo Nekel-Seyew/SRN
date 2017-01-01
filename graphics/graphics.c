@@ -4,6 +4,16 @@
 #include <stdlib.h>
 #include <ncurses.h>
 #include "../jsmn/jsmn.h"
+#include "../asprintf.c/asprintf.h"
+
+static int jsoneq(const char *json, jsmntok_t *tok, const char *s) {
+	if (tok->type == JSMN_STRING && (int) strlen(s) == tok->end - tok->start &&
+			strncmp(json + tok->start, s, tok->end - tok->start) == 0) {
+		return 0;
+	}
+	return -1;
+}
+
 
 void init_ncurses(){
 	//printf("%d\n",COLOR_PAIRS);
@@ -55,17 +65,17 @@ void draw_sprite(WINDOW* win, struct sprite* spr, int x, int y){
 
 char* sprite_to_JSON(struct sprite* spr){
 	int len = spr->height*spr->width;
-	//"{height:num,width:num,sprite:[H*W],color:[H*W]}
-	char* ret = malloc(sizeof(char)*(41+len+1)+sizeof(char)*4*len);
-	memset(ret,0,sizeof(char)*(41+2*(len))+1);
+	//"{"height":num,"width":num,"sprite":[H*W],"color":[H*W]}
+	char* ret = malloc(sizeof(char)*(49+len+1)+sizeof(char)*4*len);
+	memset(ret,0,sizeof(char)*(49+2*(len))+1);
 	char h[4], w[4];
 	h[3]=0; w[3]=0;
 	sprintf(h,"%03d",spr->height);
 	sprintf(w,"%03d",spr->width);
-	char* hc = "height:";
-	char* wc = "width:";
-	char* sc = "sprite:";
-	char* cc = "color:";
+	char* hc = "\"height\":";
+	char* wc = "\"width\":";
+	char* sc = "\"sprite\":";
+	char* cc = "\"color\":";
 	int hcl = strlen(hc);
 	int wcl = strlen(wc);
 	int scl = strlen(sc);
@@ -104,9 +114,27 @@ void sprite_from_JSON(struct sprite* spr, char* jsn){
 	jsmntok_t tok[300];
 	jsmn_init(&parser);
 	int r;
+	char* work;
 	r = jsmn_parse(&parser, jsn, strlen(jsn), tok, sizeof(tok)/sizeof(tok[0]));
 	if(r < 1 || tok[0].type != JSMN_OBJECT){
 		//BAD
+	}
+	int i;
+	for(i=0; i<r; i++){
+		if(jsoneq(jsn, &tok[i], "height") == 0){
+			asprintf(&work,"%.*s",tok[i+1].end-tok[i+1].start,jsn+tok[i+1].start);
+			spr->height = atoi(work);
+			free(work);
+		}else if(jsoneq(jsn, &tok[i],"width") == 0){
+			asprintf(&work,"%.*s",tok[i+1].end-tok[i+1].start, jsn+tok[i+1].start);
+			spr->width=atoi(work);
+			free(work);
+		}else if(jsoneq(jsn, &tok[i],"sprite") == 0){
+			if(tok[i+1].type != JSMN_ARRAY){
+				//BAD
+			}
+		}else if(jsoneq(jsn, &tok[i],"color") == 0){
+		}
 	}
 
 }
