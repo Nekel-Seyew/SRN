@@ -6,8 +6,8 @@ struct escape_screen_data{
 	int choice;
 };
 
-char* escape_screen_options[] = {"Return","Exit Game"};
-struct escape_screen_data escreen_data={2,-1};
+char* escape_screen_options[] = {"Return","Graphics Check","Exit Game"};
+struct escape_screen_data escreen_data={3,-1};
 
 int escape_screen_draw(WINDOW* win){
 	werase(win);
@@ -51,7 +51,7 @@ int escape_screen_update(int userInput){
 		switch(escreen_data.choice){
 			case 0:
 				return RETURN;
-			case 1:
+			case 2:
 				return EXIT_GAME;
 			default:
 				break;

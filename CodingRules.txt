@@ -1,4 +1,4 @@
-CODING RULES:
+----CODING RULES:----
 
 1) When starting a new curly brace, start on same line, and end curly should be at same level as the line which started it. EG:
 	if(some_statement){
@@ -16,13 +16,23 @@ CODING RULES:
 			do_this();
 3) camelCase or under_score is acceptable, but be consistent in a sourcefile.
 
-REGARDING GenericList.h
+4) Source files are also known as Modules, and Directories are Systems. Subdirectories are thus subsystems.
+
+5) Feel free to use Global Variables, but ONLY if they are static and in a single file/module. The only exception to this rule will be main.c and the entire game directory/system, since they are all a tightlybound subsystem anyway.
+
+----REGARDING GenericList.h----
+
+DO NOT USE IT. Instead, Use Collections-C/src/list.h. It's a lot more robust, and better in every way.
+
+_deprecated_
 
 When defining a list, use define_list(item), but only use it where the list you are defining the item to have a list made out of it. Thatway, to use a list of that type, you only have to import the item.h file.
 
 When defining a type, it has to be one word. So if the type is a struct, enum, or other sort of multi-word types, you need to typedef them.
 
-REGARDING COLORS
+_end_
+
+----REGARDING COLORS----
 
 Since Ncurses allows us to use the colors on the terminal, colors need to be
 paired and maped to integers. The Following is that mapping:
@@ -46,4 +56,4 @@ paired and maped to integers. The Following is that mapping:
 |WHITE  |56     |57     |58     |59     |60     |61     |62     |63     |
 +-------+-------+-------+-------+-------+-------+-------+-------+-------+
 
-
+While Modern Curses does support up to 256 Colors, Not every terminal does, so the basic 8x8 color pairings will hold until further notice.

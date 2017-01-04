@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <time.h>
 #include <unistd.h> /* for getopt */
+#include <getopt.h> /* for getopt */
 #include <ncurses.h> /*for all the ncurses stuff */
 #include "GenericList.h"
 #include "game/gameMode.h"
@@ -9,8 +10,8 @@
 
 typedef char* string;
 //all lists go here
-define_list(string)
-define_list(gameMode_t)
+//define_list(string)
+//define_list(gameMode_t)
 
 gameMode_t null_mode = {0,0,0};
 //extern variables
@@ -64,7 +65,7 @@ int main(int argc, string argv[]){
 		init_ncurses();
 		int done = 0;
 		gameMode_t game_mode = playerCreationMode;
-		gameMode_t prev_mode;
+		gameMode_t prev_mode = null_mode;
 		do{
 			//add timing code while loop
 			//add updating and drawing code
