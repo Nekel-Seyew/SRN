@@ -8,7 +8,7 @@
  */
 
 const char *JSON_STRING =
-	"{\"user\": \"johndoe\", \"admin\": false, \"uid\": 1000,\n  "
+	"{\"user\": \"johndoe\", \"admin\": +, \"uid\": 1000,\n  "
 	"\"groups\": [\"users\", \"wheel\", \"audio\", \"video\"]}";
 
 static int jsoneq(const char *json, jsmntok_t *tok, const char *s) {
@@ -49,6 +49,7 @@ int main() {
 			/* We may additionally check if the value is either "true" or "false" */
 			printf("- Admin: %.*s\n", t[i+1].end-t[i+1].start,
 					JSON_STRING + t[i+1].start);
+			printf("type: %i\n",t[i+1].type);
 			i++;
 		} else if (jsoneq(JSON_STRING, &t[i], "uid") == 0) {
 			/* We may want to do strtol() here to get numeric value */

@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "json.h"
 #include <string.h>
+#include <assert.h>
 
 int main(){
 	jsonarray_t* array = malloc(sizeof(jsonarray_t));
@@ -36,6 +37,12 @@ int main(){
 	printf("Double: %lf\n",json_get(obj,"b",&type).d);
 	printf("Long: %li\n",json_get(obj,"c",&type).l);
 	printf("array: %s\n",json_array(NULL,json_get(obj,"array",&type).a));
+
+	char* putout = "{\"a\":\"SUP!\",\"b\":1.23400,\"c\":10482,\"array\":[52,56,60,64,68,72,76,80,84,88],\"admin\":false}";
+	jsonitem_t it = json_fromstring(putout,&type);
+	assert(it.o != NULL);
+	char* m = json_tostring(it.o);
+	printf("%s\n",m);
 
 	return 0;
 }

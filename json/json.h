@@ -64,6 +64,10 @@ char* json_array(const char* fmt, jsonarray_t* array);
 char* json_bool(int i);
 char* json_tostring(jsonobject_t* object);
 
+//num == -1 means the user has no idea how many tokens are in the json string.
+//By default, json will assume no more than 1024
+jsonitem_t json_fromstring(char* a, jsontype_t* type);
+
 //Takes the objeict to put the item in, the name of the item, a void* space to put the item, and the type of the item. All input should be pointers to actual data location
 void  json_put(jsonobject_t* obj, char* name, jsonitem_t val, jsontype_t type);
 //Takes the object to search, the name of the item, and a pointer to a type object to put the type of object returned, and returns a void* of the item, all return types will be pointers of some kind
