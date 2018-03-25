@@ -31,9 +31,10 @@ void init_graphics(char* json);
 void init_ncurses();
 void draw_char(WINDOW* win, char a, int color, int x, int y);
 void draw_sprite(WINDOW* win, struct sprite* spr, int x, int y);
-void draw_window(WINDOW* win, int x, int y, struct graphics_settings* stng);
+void draw_window(WINDOW* win, int x, int y, struct graphics_settings* stng, int refresh);
 char* sprite_to_JSON(struct sprite* spr);
 void sprite_from_JSON(struct sprite* spr, char* jsn);
 void graphics_settings_from_JSON(struct graphics_settings* st, char* jsn);
-void graphics_settings_to_JSON(struct graphics_settings* st);
+char* graphics_settings_to_JSON(struct graphics_settings* st);
+struct graphics_settings* copy_global_graphics_settings();
 #endif

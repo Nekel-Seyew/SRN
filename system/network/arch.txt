@@ -1,0 +1,14 @@
+The program will have Four input modes for the net arch:
+	1) Client connecting to Server
+	2) Stand-Alone Server
+	3) Server Connecting to Server
+	4) Stand-Alone client
+
+
+In configuration (1), the program doesn't activate the server processes, and simply needs a single TCP connection to the server it's connected to.
+
+In configuration (2), the program doesn't need any client code, or much UI output, it simply starts up the game world (either saved or from scratch) and starts awaiting other servers/clients for connection.
+
+In configuration (3), the program doesn't need much UI output, and will use both the client and server code to connect to a pre-existing server and help coordinate the game between different users. This is to make the game world more stable, in case a server needs to go off-line, another server still exists which can take on the responsibilities of the down server, and it can help expand the capabilities of the network, just like in a real IRC setting.
+
+In configuration (4), the program needs both client and server code, as a server needs to be started for the client to connect to, and the game is essentially single player (or someone starting both the server and game for others to connect to.)

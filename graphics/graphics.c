@@ -17,9 +17,9 @@ static int jsoneq(const char *json, jsmntok_t *tok, const char *s) {
 	return 0;
 }
 
-void init_graphics(char* json){
-	if(settings != NULL){
-		settings_from_json(&global_settings,json);
+void init_graphics(char* settings_json){
+	if(settings_json != NULL){
+		graphics_settings_from_JSON(&global_settings,settings_json);
 		return;
 	}else{
 		//struct graphics_settings* ret = 
@@ -85,14 +85,18 @@ void draw_sprite(WINDOW* win, struct sprite* spr, int x, int y){
 		}
 	}
 }
-void draw_window(WINDOW* win, int x, int y, struct graphics_settings* stng){
+void draw_window(WINDOW* win, int x, int y, struct graphics_settings* stng, int refresh){
 	struct graphics_settings* settings =((stng==NULL) ? &global_settings : stng);
 	int i=0;
 	int j=0;
+	werase(win);
 	if(!settings->color_off){
 		wattron(win,COLOR_PAIR(settings->color));
 	}
 	mvwin(win,y,x);
+	//box(win,0,0);
+	wborder(win,settings->border.left,settings->border.right,settings->border.up,settings->border.down,settings->border.up_left,settings->border.up_right,settings->border.dn_left,settings->border.dn_right);
+	/*
 	//4 corners
 	mvwprintw(win,0,0,"%c",settings->border.up_left);
 	mvwprintw(win,0,settings->width-1,"%c",settings->border.up_right);
@@ -107,9 +111,13 @@ void draw_window(WINDOW* win, int x, int y, struct graphics_settings* stng){
 	for(i=0; i<settings->height; i++){
 		mvwprintw(win,i,0,"%c",settings->border.left);
 		mvwprintw(win,i,settings->width-1,"%c",settings->border.right);
-	}	
+	}
+	*/
 	if(!settings->color_off){
 		wattroff(win,COLOR_PAIR(settings->color));
+	}
+	if(refresh){
+		wrefresh(win);
 	}
 }
 
@@ -215,9 +223,15 @@ void sprite_from_JSON(struct sprite* spr, char* jsn){
 	//array_destroy(wa);
 
 }
-
-void settings_from_JSON(struct graphics_settings* st, char* jsn){
+struct graphics_settings* copy_global_graphics_settings(){
+	struct graphics_settings* cpy = malloc(sizeof(struct graphics_settings));
+	memcpy(cpy,&global_settings,sizeof(struct graphics_settings));
+	return cpy;
 }
-void settings_to_JSON(struct graphics_settings* st){
+
+void graphics_settings_from_JSON(struct graphics_settings* st, char* jsn){
+}
+char* graphics_settings_to_JSON(struct graphics_settings* st){
+	return NULL;
 }
 
