@@ -1,3 +1,8 @@
+//needed for strndup
+#ifndef _XOPEN_SOURCE
+#define _XOPEN_SOURCE 700
+#endif
+
 #include "graphics.h"
 #include <assert.h>
 #include <string.h>
@@ -17,9 +22,11 @@ static int jsoneq(const char *json, jsmntok_t *tok, const char *s) {
 	return 0;
 }
 
-void init_graphics(char* settings_json){
-	if(settings_json != NULL){
-		graphics_settings_from_JSON(&global_settings,settings_json);
+static int opposites[64];
+
+void init_graphics(char* json){
+	if(json != NULL){
+		settings_from_json(&global_settings,json);
 		return;
 	}else{
 		//struct graphics_settings* ret = 
@@ -31,10 +38,11 @@ void init_graphics(char* settings_json){
 		global_settings.border.up       = '-';
 		global_settings.border.left     = '|';
 		global_settings.border.right    = '|';
-		global_settings.color           =  7 ;
+		global_settings.border.color    =  7 ;
 		global_settings.width           =  80;
 		global_settings.height          =  24;
 		global_settings.color_off       =  0 ;
+		global_settings.background_color=  7 ;
 	}
 }
 
@@ -50,6 +58,7 @@ void init_ncurses(){
 			for(j=0; j<8; ++j){
 				cresp = init_pair(8*i+j+1,j,i);
 				assert(cresp == OK);//making sure it's fine
+				opposites[8*i+j] = 8*j+i;//set it's opposite
 			}
 		}
 	}
@@ -91,7 +100,8 @@ void draw_window(WINDOW* win, int x, int y, struct graphics_settings* stng, int 
 	int j=0;
 	werase(win);
 	if(!settings->color_off){
-		wattron(win,COLOR_PAIR(settings->color));
+		wattron(win,COLOR_PAIR(settings->border.color));
+		wbkgd(win,COLOR_PAIR(settings->background_color));
 	}
 	mvwin(win,y,x);
 	//box(win,0,0);
@@ -103,18 +113,20 @@ void draw_window(WINDOW* win, int x, int y, struct graphics_settings* stng, int 
 	mvwprintw(win,settings->height-1,0,"%c",settings->border.dn_left);
 	mvwprintw(win,settings->height-1,settings->width-1,"%c",settings->border.dn_right);
 	//top,bottom
-	for(i=0; i<settings->width; i++){
+	j = settings->width-1;
+	for(i=1; i<j; i++){
 		mvwprintw(win,0,i,"%c",settings->border.up);
 		mvwprintw(win,settings->height-1,i,"%c",settings->border.down);
 	}
 	//left,right
-	for(i=0; i<settings->height; i++){
+	j = settings->height-1;
+	for(i=1; i<j; i++){
 		mvwprintw(win,i,0,"%c",settings->border.left);
 		mvwprintw(win,i,settings->width-1,"%c",settings->border.right);
 	}
 	*/
 	if(!settings->color_off){
-		wattroff(win,COLOR_PAIR(settings->color));
+		wattroff(win,COLOR_PAIR(settings->border.color));
 	}
 	if(refresh){
 		wrefresh(win);
@@ -229,9 +241,80 @@ struct graphics_settings* copy_global_graphics_settings(){
 	return cpy;
 }
 
-void graphics_settings_from_JSON(struct graphics_settings* st, char* jsn){
-}
 char* graphics_settings_to_JSON(struct graphics_settings* st){
 	return NULL;
+}
+
+
+char* settings_to_JSON(struct graphics_settings* st){
+
+
+//The following are methods to change window settings. Passing NULL simply modifies the global settings
+void change_up_left(char up_left, struct graphics_settings* s){
+	struct graphics_settings* settings = ( (s==NULL) ? &global_settings : s);
+	settings->border.up_left = up_left;
+}
+void change_up_right(char up_right, struct graphics_settings* s){
+	struct graphics_settings* settings = ( (s==NULL) ? &global_settings : s);
+	settings->border.up_right = up_right;
+}
+void change_dn_left(char dn_left, struct graphics_settings* s){
+	struct graphics_settings* settings = ( (s==NULL) ? &global_settings : s);
+	settings->border.dn_left = dn_left;
+}
+void change_dn_right(char dn_right, struct graphics_settings* s){
+	struct graphics_settings* settings = ( (s==NULL) ? &global_settings : s);
+	settings->border.dn_right = dn_right;
+}
+void change_up(char up, struct graphics_settings* s){
+	struct graphics_settings* settings = ( (s==NULL) ? &global_settings : s);
+	settings->border.up = up;
+}
+void change_down(char down, struct graphics_settings* s){
+	struct graphics_settings* settings = ( (s==NULL) ? &global_settings : s);
+	settings->border.down = down;
+}
+void change_left(char left, struct graphics_settings* s){
+	struct graphics_settings* settings = ( (s==NULL) ? &global_settings : s);
+	settings->border.left = left;
+}
+void change_right(char right, struct graphics_settings* s){
+	struct graphics_settings* settings = ( (s==NULL) ? &global_settings : s);
+	settings->border.right = right;
+}
+void change_height(int height, struct graphics_settings* s){
+	struct graphics_settings* settings = ( (s==NULL) ? &global_settings : s);
+	settings->height = height;
+}
+void change_width(int width, struct graphics_settings* s){
+	struct graphics_settings* settings = ( (s==NULL) ? &global_settings : s);
+	settings->width = width;
+}
+void change_color_off(int color_off, struct graphics_settings* s){
+	struct graphics_settings* settings = ( (s==NULL) ? &global_settings : s);
+	settings->color_off = color_off;
+}
+void change_border_color(int color, struct graphics_settings* s){
+	struct graphics_settings* settings = ( (s==NULL) ? &global_settings : s);
+	settings->border.color = color;
+}
+void change_background_color(int color, struct graphics_settings* s){
+	struct graphics_settings* settings = ( (s==NULL) ? &global_settings : s);
+	settings->background_color = color;
+}
+
+
+int get_opposite_color(int color){
+	if(color < 0 || color > 64){
+		return 0;
+	}
+	return opposites[color-1];
+}
+
+
+struct graphics_settings* copy_global_graphics_settings(){
+	struct graphics_settings* n = malloc(sizeof(struct graphics_settings));
+	memcpy(n,&global_settings,sizeof(struct graphics_settings));
+	return n;
 }
 
